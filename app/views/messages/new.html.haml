@@ -1,0 +1,30 @@
+.main
+  %h1 Come on fellas!
+  %p
+    Now that the Mongol Rally has started, Dave and Doug are going to need all the help they can get to make it all the way to Ulaanbataar.  Leave a message of encouragement for the lads below so they know just how much we all care that they don't get ripped to shreds by hungry grey wolves, or sold into the Russian sex industry.
+
+#messages
+  - if @messages.any?
+    - @messages.each do |msg|
+      %div{ :class => cycle("odd", "even")}
+        %p
+          %span.author= msg.author 
+          %span.date= msg.date
+        %p= msg.content
+  - else
+    %div
+      %p No messages yet! Come on guys!
+
+#form
+  - if @message.errors.any?
+    .errors  
+      %ul
+        - @message.errors.full_messages.each do |msg| 
+          %li= msg 
+
+  = form_for @message do |f|
+    = f.label :name
+    = f.text_field :author
+    = f.label :message
+    = f.text_area :content, :placeholder => "Enter a special message for Dave & Doug to read!"
+    = f.submit

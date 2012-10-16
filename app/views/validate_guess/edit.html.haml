@@ -1,0 +1,6 @@
+= form_tag validate_guess_path do |f|
+  = label_tag :guess
+  = select_tag "guess_id", options_from_collection_for_select(@guesses, "id", "display_name")
+  = label_tag :password
+  = password_field_tag "password"
+  = submit_tag 'Validate'

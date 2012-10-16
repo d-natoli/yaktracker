@@ -1,0 +1,76 @@
+.main
+  %h1 Gambling, woo!
+  %p
+    Here you can make a guess on where you think Dave and Doug will end their journey.
+    Whoever is the closest wins all the money!  If Dave and Doug make it all the way 
+    to Ulaanbataar, the money will be used to fly them the hell out of there!
+  %p
+    Click to place a marker on the map, then enter your details and a personal message
+    in the form. Your name and message will appear when other's click on your guess,
+    so let's try to keep it clean kids!
+  %p 
+    Once your guess is placed, an email will be sent to you regarding payment of $5 per guess.
+    Guesses aren't valid until payment is received, so please use a valid email address.
+    You can guess as many times as you like, but be quick as guessing closes on July 12th
+    when the Mongol Rally starts!
+    
+= gmaps(@map_options)
+
+#form
+  - if @guess.errors.any?
+    .errors  
+      %ul
+        - @guess.errors.full_messages.each do |msg| 
+          %li= msg 
+
+  = form_for @guess do |f|
+    = f.label :name
+    = f.text_field :name
+    = f.label :email
+    = f.email_field :email
+    = f.label :message
+    = f.text_area :message, :placeholder => "Enter a special message for Dave & Doug to read! It will appear when people click on your guess." 
+    = f.hidden_field :latitude
+    = f.hidden_field :longitude
+    = f.submit
+
+- content_for :scripts do
+  :javascript
+    var markersArray = [];
+    // On click, clear markers, place a new one, update coordinates in the form
+    Gmaps.map.callback = function() {
+      google.maps.event.addListener(Gmaps.map.serviceObject, 'click', function(event) {
+        clearOverlays();
+        placeMarker(event.latLng);
+        updateFormLocation(event.latLng);
+      });
+    };
+    // Update form attributes with given coordinates
+    function updateFormLocation(latLng) {
+      $('#guess_latitude').val(latLng.lat());
+      $('#guess_longitude').val(latLng.lng());
+      $('#location_attributes_gmaps_zoom').val(Gmaps.map.serviceObject.getZoom());
+    }
+    // Add a marker with an open infowindow
+    function placeMarker(latLng) {
+      var marker = new google.maps.Marker({
+        position: latLng, 
+        map: Gmaps.map.serviceObject,
+        draggable: true
+      });
+      markersArray.push(marker);
+      // Set and open infowindow
+      // Listen to drag & drop
+      google.maps.event.addListener(marker, 'dragend', function() {
+        updateFormLocation(this.getPosition());
+      });
+    }
+    // Removes the overlays from the map
+    function clearOverlays() {
+      if (markersArray) {
+        for (var i = 0; i < markersArray.length; i++ ) {
+          markersArray[i].setMap(null);
+        }
+      }
+      markersArray.length = 0;
+    }

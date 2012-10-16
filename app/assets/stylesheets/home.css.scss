@@ -1,0 +1,55 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$heading-color: #c8a257;
+
+.top {
+  h1, h2, h3 {
+    text-align:center;
+    margin:0;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  h2 {
+    color: $heading-color;
+  }
+
+  div {
+    width:50%;
+  }
+}
+
+.pool {
+  float:right;
+}
+
+.location {
+  float:left;
+}
+
+.main {
+  float:left;
+  
+  h1 {
+    color: $heading-color;
+    margin:0;
+  }
+}
+
+.rule {
+  width:100%;
+  float:left;
+  clear:both;
+}
+
+a {
+  color: $heading-color;
+
+  &:hover {
+    color:#000;
+  }
+}

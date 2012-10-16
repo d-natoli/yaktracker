@@ -1,0 +1,84 @@
+html {
+  min-width:1024px;
+}
+
+body {
+  background-color: #82C6E8;
+  margin:5px;
+  max-width:1000px;
+  font: 16px "Helvetica Neue",Arial,sans-serif;
+  margin:auto;
+
+  label {
+    font-size:14px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea{
+    font: 16px "Helvetica Neue",Arial,sans-serif;
+    margin-bottom:10px;
+  }
+
+  textarea {
+    height: 250px;
+  }
+}
+
+#header {
+  background: url('desert-background.png') no-repeat;
+  border: solid 3px #000;
+  border-top:none;
+  overflow:auto;
+}
+
+#logo {
+  margin-left:50px;
+  float:left;
+}
+
+#where {
+  margin: 100px 0 0 10px;
+  float:left;
+}
+
+#guess {
+  margin:100px 0 0 80px;
+  float:left;
+}
+
+#message {
+  margin:100px 0 0 60px;
+  float:left;
+}
+
+#message a,
+#guess a,
+#where a {
+  padding-top:111px;
+}
+
+#flash {
+  text-align:center;
+
+  p.error {
+    color:Red;
+  }
+}
+
+#content {
+  background-color:white;
+  overflow:auto;
+  border: solid 3px #000;
+  border-top:none;
+  padding: 10px 15px;
+}
+
+#footer {
+  text-align:center;
+
+  span.reverse { 
+    unicode-bidi: bidi-override;
+    direction:rtl;
+  }
+}

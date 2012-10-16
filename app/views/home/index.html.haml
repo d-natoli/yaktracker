@@ -1,0 +1,32 @@
+.top
+  .location
+    %h2 Last Known Location
+    %h1= @current_location
+    %h3= @date
+  .pool
+    %h2 Current Guessing Pool
+    %h1= @betting_pool
+.rule
+  %hr
+.main
+  %h1 Hi!
+  %p 
+    Welcome to YakTracker!  Since you are here you probably already know that Dave and Doug are
+    taking part in the Mongol Rally, where they will drive 15,000 kilometres from London, England
+    to Ulaanbataar, Mongolia. Those crazy kids!
+  %h1 Wtf, Mongolia?
+  %p
+    That's right. And being as organised as Dave and Doug are, I'm sure we all have a lot of
+    faith in them making it all the way to Ulaanbataar without a hitch. 
+  %h1 But just in case they don't?
+  %p
+    Well let's not think that way! However you can head over to our
+    = link_to "Send A Message", new_message_path
+    section to leave a message for Dave and Doug to cheer them on when they are being savagely
+    eaten by wolves.
+  %h1 How will we know where they are?
+  %p
+    Through the magics of the interwebs, I have created a map which will be updated from a special,
+    top-secret feed that Dave and Doug will update on their travels.  Check out 
+    = link_to "Where Are They Now?", map_index_path
+    to see how close they are staying on their planned route, as well as all the guesses others have made.

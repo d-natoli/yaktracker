@@ -1,0 +1,2 @@
+module DeleteCacheHelper
+end

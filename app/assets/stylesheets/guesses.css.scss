@@ -1,0 +1,23 @@
+// Place all the styles related to the guesses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+label, input {
+  display:block;
+}
+
+#form {
+  float:left;
+  margin-left: 10px;
+}
+
+.errors {
+  border: 1px solid Red;
+  
+  ul {
+    padding-left:30px;
+    color:red;
+  }
+}
+
+
