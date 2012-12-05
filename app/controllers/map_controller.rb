@@ -6,6 +6,7 @@ class MapController < ApplicationController
       marker.infowindow render_to_string(:partial => "/guesses/message", :locals => { :guess => guess })
     end
 
+    #add the checkin markers to the guess markers
     markers = "#{markers[0..-2]}, #{CheckIn.all.to_gmaps4rails[1..-1]}"
     
     @map_options = { "map_options" => { "container_class" => "main_map map_container", 

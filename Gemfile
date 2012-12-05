@@ -8,7 +8,7 @@ gem 'rails', '3.2.3'
 group :development do
   gem 'sqlite3'
   # To use debugger
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'debugger'
 end
 
 group :production do
