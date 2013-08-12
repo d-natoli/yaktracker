@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-YakTracker::Application.config.session_store :cookie_store, key: '_yak-tracker_session'
+YakTracker::Application.config.session_store :cookie_store, key: '_yak_tracker_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
