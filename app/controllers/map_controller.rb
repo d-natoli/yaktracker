@@ -1,6 +1,6 @@
 class MapController < ApplicationController
   def index
-    polylines = build_route 
+    polylines = build_route
 
     markers = Guess.paid.to_gmaps4rails do |guess, marker|
       marker.infowindow render_to_string(:partial => "/guesses/message", :locals => { :guess => guess })
