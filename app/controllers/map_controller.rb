@@ -8,9 +8,9 @@ class MapController < ApplicationController
 
     #add the checkin markers to the guess markers
     markers = "#{markers[0..-2]}, #{CheckIn.all.to_gmaps4rails[1..-1]}"
-    
+
     @map_options = { "map_options" => { "container_class" => "main_map map_container", 
-                                        "provider_key" => "INSERT_PROVIDER_KEY" },
+                                        "provider_key" => ENV["GOOGLE_MAPS_KEY"] },
                      "direction" => { "data" => { "from" => Checkpoint.first,
                                                   "to" => Checkpoint.last },
                                       "options" => { "waypoints" => Checkpoint.all[1...-1] }
@@ -36,9 +36,9 @@ class MapController < ApplicationController
 
   def build_route_string
     route = "["
-    
+
     locations = CheckIn.all.map(&:location)
-  
+
     while locations.size > 0 do
       points = locations.slice!(0,8)
       waypoints = points.count > 2 ? points[1..-2] : []
@@ -57,6 +57,7 @@ class MapController < ApplicationController
       tweets.reverse.map do |tweet|
         location = tweet.text.partition("-")[0].strip
         message = tweet.text.partition("-")[2].strip
+        location.gsub!(/Balquash/,"Balqash")
         CheckIn.create!(:location => location, :message => message) unless CheckIn.find_by_location(location)
       end
     end
