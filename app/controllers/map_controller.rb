@@ -42,9 +42,15 @@ class MapController < ApplicationController
     while locations.size > 0 do
       points = locations.slice!(0,8)
       waypoints = points.count > 2 ? points[1..-2] : []
-      result = Gmaps4rails.destination({ "from" => points[0], "to" => points[-1]}, "waypoints" => waypoints)
-      route << result.map { |leg| leg["polylines"] }.join(",")
-      route << ","
+
+      begin
+        result = Gmaps4rails.destination({ "from" => points[0], "to" => points[-1]}, "waypoints" => waypoints)
+        route << result.map { |leg| leg["polylines"] }.join(",")
+        route << ","
+      rescue Gmaps4rails::DirectionStatus => e
+        #google maps can't find a match so ignore
+      end
+
       locations.unshift(points[-1]) if locations.size > 0
     end
 
