@@ -8,7 +8,14 @@ class HomeController < ApplicationController
 
   def get_tweets
     Rails.cache.fetch('tweets', :expires_in => 60.minutes) do
-      Twitter.user_timeline("yaktracker", :count => 200)
+      twitter_client = Twitter::REST::Client.new do |config|
+        config.consumer_key = ENV["CONSUMER_KEY"]
+        config.consumer_secret = ENV["CONSUMER_SECRET"]
+        config.oauth_token = ENV["OAUTH_TOKEN"]
+        config.oauth_token_secret = ENV["OAUTH_TOKEN_SECRET"]
+      end
+
+      twitter_client.user_timeline("yaktracker", :count => 200)
     end
   end
 end
