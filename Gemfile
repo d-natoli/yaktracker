@@ -42,7 +42,7 @@ group :test do
   gem 'email_spec'
 end
 
-gem 'gmaps4rails'
+gem 'gmaps4rails', "~> 1.0"
 gem 'twitter'
 gem 'dalli'
 
