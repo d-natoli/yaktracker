@@ -1,9 +1,7 @@
 class CheckIn < ActiveRecord::Base
   acts_as_gmappable
-  
-  attr_accessible :location, :message, :latitude, :longitude
-  
-  validates :location, :presence => true
+
+  validates :location, presence: true
 
   def gmaps4rails_address
     location

@@ -1,15 +1,13 @@
 class Guess < ActiveRecord::Base
-  acts_as_gmappable :process_geocoding => false
+  acts_as_gmappable process_geocoding: false
 
-  attr_accessible :name, :email, :message, :latitude, :longitude
-
-  validates :name, :email, :message, :presence => true
+  validates :name, :email, :message, presence: true
   validate :location_entered
 
   after_create :send_new_guess_email
 
-  scope :paid, where(:paid => true)
-  scope :unpaid, where(:paid => false)
+  scope :paid, ->{ where(paid: true) }
+  scope :unpaid, ->{ where(paid: false) }
 
   def display_name
     "#{id} - #{name} - #{email}"
@@ -22,6 +20,7 @@ class Guess < ActiveRecord::Base
   end
 
   private
+
   def location_entered
     errors[:base] = "Please select a location on the map" unless latitude && longitude
   end

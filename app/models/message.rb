@@ -1,7 +1,6 @@
 class Message < ActiveRecord::Base
-  attr_accessible :author, :content
 
-  validates :author, :content, :presence => true
+  validates :author, :content, presence: true
 
   after_create :send_new_message_email
 
@@ -10,7 +9,9 @@ class Message < ActiveRecord::Base
   end
 
   private
+
   def send_new_message_email
     MessageMailer.new_message(self).deliver
   end
+
 end
