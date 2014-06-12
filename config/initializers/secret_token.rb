@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-YakTracker::Application.config.secret_token = '03f835206fe4c5d8cb07272d0e706759140bad35beb5b764d567e1b80246db15e608dbf0aad592bc658b6f485913bb06b855ea11e1247af38add44902e481789'
+YakTracker::Application.config.secret_token = 'b4b699250414ad0ad0d4e73e2574934782ecfef0b584c852e46d011b0f94139aa8652d39cd6216ee1a2129ace157fde3bc2652d0c1e37043f469f5a445b1e7c7'
